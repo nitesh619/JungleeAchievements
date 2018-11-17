@@ -48,15 +48,17 @@ public class Game {
   }
 
   public void playGame() {
-    System.out.println("Let's Play!");
+    System.out.println("Let's Play " + gameName);
     playerGameStats = Stream.of(teamA, teamB)
         .flatMap(Collection::stream)
         .collect(toMap(identity(), player -> simulateGameStats()));
+    System.out.println("Ka-BOOM!!");
   }
 
   public Map<Player, GameStat> finishGame() {
+    //perform post game reset and operation
     System.out.println("Game Over!");
-    return playerGameStats;
+    return playerGameStats; //return game stats
   }
 
   private GameStat simulateGameStats() {

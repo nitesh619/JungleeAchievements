@@ -6,7 +6,9 @@ package com.junglee.games.model;
 public class GameStat {
 
   private final String gameName;
-  private final int totalKills;
+
+  private int totalKills;
+
   private final long durationPlayed;
   private final int spellCast;
   private final int firstKills;
@@ -16,7 +18,6 @@ public class GameStat {
   private final int attemptedAttacks;
   private final int totalHits;
   private final boolean isWon;
-
   public GameStat(final String gameName, final int totalKills, final long durationPlayed,
       final int spellCast, final int firstKills, final long totalSpellDamage,
       final long totalDamageDone, final int totalAssists, final int attemptedAttacks,
@@ -56,6 +57,10 @@ public class GameStat {
 
   public int getFirstKills() {
     return this.firstKills;
+  }
+
+  public void setTotalKills(final int totalKills) {
+    this.totalKills = totalKills;
   }
 
   public long getTotalSpellDamage() {

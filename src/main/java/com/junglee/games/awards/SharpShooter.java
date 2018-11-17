@@ -13,9 +13,9 @@ public class SharpShooter implements IAward {
 
   private static final int SHARP_SHOOTER_PERCENTAGE = 75;
 
-  public boolean isEligible(Player player, GameStat model) {
-    if (model.getAttemptedAttacks() > 0) {
-      float hitPercentage = (float) model.getTotalKills() / model.getAttemptedAttacks() * 100;
+  public boolean isEligible(Player player, GameStat stat) {
+    if (stat.getAttemptedAttacks() > 0) {
+      float hitPercentage = (float) stat.getTotalKills() / stat.getAttemptedAttacks() * 100;
       return hitPercentage >= SHARP_SHOOTER_PERCENTAGE;
     }
     return false;

@@ -10,6 +10,7 @@ import com.junglee.games.achievements.IAchievementCalculator;
 import com.junglee.games.awards.BigWinner;
 import com.junglee.games.awards.Bruiser;
 import com.junglee.games.awards.IAward;
+import com.junglee.games.awards.Legend;
 import com.junglee.games.awards.SharpShooter;
 import com.junglee.games.awards.Veteran;
 import com.junglee.games.model.Game;
@@ -34,7 +35,7 @@ public class EntryPoint {
     List<Player> teamRaw = createTeam("Ambrose", "Brock", "Ronda", "Kurt");
     List<Player> teamSmackDown = createTeam("Becky", "AJ Styles", "Randy", "Jeff");
 
-    Game game = new Game("The Clash of Titans", teamRaw, teamSmackDown);
+    Game game = new Game("Royal Rumble!", teamRaw, teamSmackDown);
 
     game.playGame();
 
@@ -50,48 +51,52 @@ public class EntryPoint {
   }
 
   // Add more achievement's here to extend
-  private static List<IAward> getAwardList() {
+  public static List<IAward> getAwardList() {
     return Arrays.asList(
+        new Legend(),
         new SharpShooter(),
         new Bruiser(),
         new Veteran(),
         new BigWinner());
   }
 
-  private static List<Player> createTeam(final String... teamMembers) {
+  public static List<Player> createTeam(final String... teamMembers) {
     return Arrays.stream(teamMembers)
         .map(EntryPoint::createPlayer)
         .collect(toList());
   }
 
-  private static Player createPlayer(final String name) {
+  //simulate player with history
+  public static Player createPlayer(final String name) {
+    int totalWins = rand.nextInt(1600);
     return Player.builder()
         .name(name)
+        .totalWins(totalWins)
+        .gamesPlayed(rand.nextInt(700) + totalWins)
         .gamesDuration(rand.nextInt(99999999))
-        .gamesPlayed(rand.nextInt(1600))
         .totalKills(rand.nextInt(9999999))
         .totalSpells(rand.nextInt(9999))
-        .totalWins(rand.nextInt(1600))
         .badgeOfHonors(getBadges())
         .build();
   }
 
+  //previous badges won
   private static Map<IAward, Integer> getBadges() {
     List<IAward> awardList = getAwardList();
     HashMap<IAward, Integer> awardMap = new HashMap<>();
     for (IAward anAwardList : awardList) {
-      awardMap.put(anAwardList, rand.nextInt(10));
+      awardMap.put(anAwardList, rand.nextInt(100));
     }
     return awardMap;
   }
 
   private static void showAchievements(final Map<Player, List<String>> playerAchievements) {
-    String leftAlignFormat = "| %-10s | %-49s |%n";
-    System.out.format("+------------+---------------------------------------------------+%n");
-    System.out.format("| Player     | Achievement's                                     |%n");
-    System.out.format("+------------+---------------------------------------------------+%n");
+    String leftAlignFormat = "| %-10s | %-52s |%n";
+    System.out.format("+------------+------------------------------------------------------+%n");
+    System.out.format("| Player     | Achievement's                                        |%n");
+    System.out.format("+------------+------------------------------------------------------+%n");
     playerAchievements.forEach((player, awards) ->
         System.out.format(leftAlignFormat, player, join(", ", awards)));
-    System.out.format("+------------+---------------------------------------------------+%n");
+    System.out.format("+------------+------------------------------------------------------+%n");
   }
 }

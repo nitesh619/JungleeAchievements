@@ -6,17 +6,19 @@ import java.util.Map;
 public class Player {
 
   private final String name;
+
   private int gamesPlayed;
+
   private long gamesDuration;
   private int totalKills;
   private int totalWins;
-  private int totalSpells;
-  private Map<IAward, Integer> badgeOfHonors;
 
+  private int totalSpells;
+
+  private Map<IAward, Integer> badgeOfHonors;
   public Player(final String name) {
     this.name = name;
   }
-
   public Player(final String name, final int gamesPlayed, final long gamesDuration,
       final int totalKills, final int totalWins, final int totalSpells,
       final Map<IAward, Integer> badgeOfHonors) {
@@ -41,8 +43,16 @@ public class Player {
     return gamesPlayed;
   }
 
+  public void setTotalWins(final int totalWins) {
+    this.totalWins = totalWins;
+  }
+
   public int getTotalWins() {
     return totalWins;
+  }
+
+  public void setGamesPlayed(final int gamesPlayed) {
+    this.gamesPlayed = gamesPlayed;
   }
 
   public String toString() {
