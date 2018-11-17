@@ -1,6 +1,15 @@
 # JungleeAchievements
 An achievements system for a fictional online game.
 
+## Prerequisite:
+1. Java 8
+2. Maven to build
+
+## How to Build and Run:
+1. Run ___mvn clean install___ command.
+2. Navigate to jar file inside target and execute: ___java -jar JungleeAchievements-2018.1-SNAPSHOT.jar___
+
+## About Problem:
 We advise reading the book Clean Code, by Robert c Martin, which has a lot of
 principles and standards that make it easy for people to read and understand code.
 Our fictional game is played online between two teams. Each team can have 3-
