@@ -6,7 +6,6 @@ import java.util.Map;
 public class Player {
 
   private final String name;
-
   private int gamesPlayed;
 
   private long gamesDuration;
@@ -16,19 +15,19 @@ public class Player {
   private int totalSpells;
 
   private Map<IAward, Integer> badgeOfHonors;
+
   public Player(final String name) {
     this.name = name;
   }
-  public Player(final String name, final int gamesPlayed, final long gamesDuration,
-      final int totalKills, final int totalWins, final int totalSpells,
-      final Map<IAward, Integer> badgeOfHonors) {
-    this.name = name;
-    this.gamesPlayed = gamesPlayed;
-    this.gamesDuration = gamesDuration;
-    this.totalKills = totalKills;
-    this.totalWins = totalWins;
-    this.totalSpells = totalSpells;
-    this.badgeOfHonors = badgeOfHonors;
+
+  public Player(final PlayerBuilder playerBuilder) {
+    this.name = playerBuilder.name;
+    this.gamesPlayed = playerBuilder.gamesPlayed;
+    this.gamesDuration = playerBuilder.gamesDuration;
+    this.totalKills = playerBuilder.totalKills;
+    this.totalWins = playerBuilder.totalWins;
+    this.totalSpells = playerBuilder.totalSpells;
+    this.badgeOfHonors = playerBuilder.badgeOfHonors;
   }
 
   public static PlayerBuilder builder() {
@@ -133,8 +132,7 @@ public class Player {
     }
 
     public Player build() {
-      return new Player(name, gamesPlayed, gamesDuration, totalKills, totalWins, totalSpells,
-          badgeOfHonors);
+      return new Player(this);
     }
 
     public String toString() {

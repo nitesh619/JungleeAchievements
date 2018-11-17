@@ -18,21 +18,19 @@ public class GameStat {
   private final int attemptedAttacks;
   private final int totalHits;
   private final boolean isWon;
-  public GameStat(final String gameName, final int totalKills, final long durationPlayed,
-      final int spellCast, final int firstKills, final long totalSpellDamage,
-      final long totalDamageDone, final int totalAssists, final int attemptedAttacks,
-      final int totalHits, final boolean isWon) {
-    this.gameName = gameName;
-    this.totalKills = totalKills;
-    this.durationPlayed = durationPlayed;
-    this.spellCast = spellCast;
-    this.firstKills = firstKills;
-    this.totalSpellDamage = totalSpellDamage;
-    this.totalDamageDone = totalDamageDone;
-    this.totalAssists = totalAssists;
-    this.attemptedAttacks = attemptedAttacks;
-    this.totalHits = totalHits;
-    this.isWon = isWon;
+
+  public GameStat(GameStatBuilder builder) {
+    this.gameName = builder.gameName;
+    this.totalKills = builder.totalKills;
+    this.durationPlayed = builder.durationPlayed;
+    this.spellCast = builder.spellCast;
+    this.firstKills = builder.firstKills;
+    this.totalSpellDamage = builder.totalSpellDamage;
+    this.totalDamageDone = builder.totalDamageDone;
+    this.totalAssists = builder.totalAssists;
+    this.attemptedAttacks = builder.attemptedAttacks;
+    this.totalHits = builder.totalHits;
+    this.isWon = builder.isWon;
   }
 
   public static GameStatBuilder builder() {
@@ -160,8 +158,7 @@ public class GameStat {
     }
 
     public GameStat build() {
-      return new GameStat(gameName, totalKills, durationPlayed, spellCast, firstKills,
-          totalSpellDamage, totalDamageDone, totalAssists, attemptedAttacks, totalHits, isWon);
+      return new GameStat(this);
     }
 
     public String toString() {
